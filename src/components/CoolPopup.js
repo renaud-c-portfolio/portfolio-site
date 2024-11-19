@@ -21,6 +21,7 @@ const CoolPopup = ({popup})=> {
 }
 
 const PopupContain  = styled.div`
+z-index:99;
 display: inline;
 left:0px;
 top:0px;

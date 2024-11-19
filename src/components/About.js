@@ -1,50 +1,55 @@
 import styled from "styled-components"
 import arrowUrl from "../assets/arrow.png"
-import portraitUrl from "../assets/portrait.png"
-import reactUrl from "../assets/logo-react.png"
-import typeScrUrl from "../assets/logo-typescript.png"
-import javaScrUrl from "../assets/logo-javascript.png"
-import nodeUrl from "../assets/logo-node.png"
-import htmlUrl from "../assets/logo-html5.png"
-import mongoUrl from "../assets/logo-mongo.png"
-import gitUrl from "../assets/logo-git.png"
-import canvasUrl from "../assets/logo-canvas.png"
+import portraitUrl from "../assets/portrait.png" 
 import CoolPopup from "./CoolPopup"
+import emailUrl from "../assets/icon-at.png";
 
 
 
-import { useEffect, useState, useRef } from "react"
-import { projects } from "../data/dataProjects"
-
-import ProjectWithDesc from "./ProjectWithDesc"
+import { useEffect, useState, useRef } from "react" 
 
 const About = () => {
 
-    const [popup,setPopup] = useState([false,0,0,<></>]); 
-    const [anim,setAnim] = useState(false);
-
-    const imgRef = useRef();
-     
-    const popupHandler = (elemento,target) =>{   
-        const _pos = target.getBoundingClientRect(); 
-        setPopup([true,`${Math.floor(_pos.left+_pos.width/2)}px`,`${Math.floor(_pos.bottom+15+ window.scrollY)}px`,elemento]);
-    }
-
-    const popupOut = () =>{
-        setPopup([false,0,0,<></>]);
-    }
+    const [popup,setPopup] = useState([false,0,0,<></>]);  
 
     useEffect(
-        ()=>{setAnim(true);
-        setTimeout(()=>{
-            setAnim(false);
-        },2000)
-        }
+        ()=>{ 
+            window.scrollTo(0,0);
+         }
         ,[])
 
     return (
  
         <AboutDiv> 
+                   
+                        <AboutMainTitle>ABOUT</AboutMainTitle> 
+                        <AboutFlexDiv>
+                            <AboutText>
+                            <AboutParagraph> 
+                            <EmailLink href={"mailto:renaud.c.portfolio@gmail.com"} target=" _blank" rel="noreferrer noopener" > renaud.c.portfolio@gmail.com</EmailLink> 
+                            
+                                    
+                                 </AboutParagraph>
+                                <AboutParagraph> 
+                                    Renaud is a Web Developper.
+                                 </AboutParagraph>
+                                 <AboutParagraph>
+                                Battling the concept of randomness, especially "random results", he likes to avoid avoids dice rolls and % critical hits. Yet despite it all he can't help but go back to fun group boardgames, or looting rare treasure chests for ultra greatswords.
+                                </AboutParagraph>
+                                <AboutParagraph>
+                                He likes to play old fighting games with robots in them. Those usually aren't random.
+                                </AboutParagraph>
+                            </AboutText>
+                            <AboutPortrait/>   
+                        </AboutFlexDiv>
+                          
+            <CoolPopup popup={popup} />
+        </AboutDiv> 
+    )
+}  
+
+/*          one day we will fix The Arrow
+
          
                 <OneBigDivDeco {...(anim ?{className:"anim"}:{})}>
                      <AbsoluteRelative> 
@@ -56,99 +61,25 @@ const About = () => {
                          </ArrowDeco>
                     </AbsoluteRelative> 
                  </OneBigDivDeco>
-                  
 
-
-            <AboutContentDiv>
-                
-                <AboutFirstFlexLayer> 
-                
-                    <AboutInfoNextToPortrait>
-                        <AboutMainTitle>ABOUT</AboutMainTitle>
-                        <AboutSubTitle>Full stack web developper specialized in user interactions</AboutSubTitle>
-                        <AboutTechnologiesDiv className="mobile-wrap" >  
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>Javascript</span>} onOutHandler={popupOut} src={javaScrUrl}  /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>Typescript</span>} onOutHandler={popupOut} src={typeScrUrl}   /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>HTML5</span>} onOutHandler={popupOut} src={htmlUrl}  /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>Canvas</span>} onOutHandler={popupOut} src={canvasUrl}   /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>Node</span>} onOutHandler={popupOut} src={nodeUrl}   /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>React</span>} onOutHandler={popupOut} src={reactUrl}   /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>MongoDB</span>} onOutHandler={popupOut} src={mongoUrl}  /> 
-                            <PopIconsImg onEnterHandler={popupHandler} popElement={<span>Git</span>} onOutHandler={popupOut} src={gitUrl}  />  
-                            
-                            
-                        </AboutTechnologiesDiv> 
-                            
-                     
-                        <AboutSubTitle >Most recent projects:</AboutSubTitle>
-
-                        </AboutInfoNextToPortrait>
-                        
-                        <AboutPortrait className="portrait">  
-                        </AboutPortrait>  
-
-                        
-                     </AboutFirstFlexLayer>
-
-
-                     <AboutProjectsDiv className="mobile-wrap"> 
-                            <ProjectsPreviewDiv>
-                                <ProjectWithDesc project={projects[0]}/>  
-                            </ProjectsPreviewDiv>
-                            <ProjectsPreviewDiv>
-                                <ProjectWithDesc project={projects[1]}/>  
-                            </ProjectsPreviewDiv>  
-                     </AboutProjectsDiv>
-            </AboutContentDiv>
-            <CoolPopup popup={popup} />
-        </AboutDiv> 
-    )
-} 
-/*<TechNamesButton
-onClick={(event)=>{event.preventDefault();}}
->display all tech names</TechNamesButton>*/ 
-
-const PopIconsImg = ({imgRef,src,onEnterHandler,onOutHandler,popElement}) =>{
-    return (
-        <TechIconsOrbDiv className="tech-orbs" >
-            <TechIconsImg elemento={popElement} src={src} 
-                onMouseEnter={(event)=>{
-                    onEnterHandler(popElement,event.target);
-                }} 
-                onMouseOut={(onOutHandler)}
-                className="tech-icons"
-            /> 
-    </TechIconsOrbDiv>
-    )
-}
+*/
 
 //styling starts----------------------------------------
 const GoodOrange = "rgb(255,110,0)"
-
-const TechNamesButton = styled.button`
-    margin-left:3vw;
-    color:white;
-    background: black; 
-    border:none;
-    cursor:help;
-    &:hover{
-        color:${GoodOrange};
-    } 
-    &:active{
-        outline: inherit;
-        border:inherit;
-    }
-`
+ 
 
 
   
 const AboutDiv = styled.div`  
+font-size: 1.6rem;
 width: 100%;  
 max-width: 1400px; 
 margin-top:2rem;  
 color:white; 
+min-height: calc(100vh - 60px - 4.1rem);
 `
 const AbsoluteRelative = styled.div`
+z-index:40;
 position: sticky;
 max-width:1px;
 max-height: 1px;
@@ -163,16 +94,17 @@ transition: 2000ms opacity ease-in-out;
 filter: drop-shadow(4px 0 0 black) 
         drop-shadow(0 4px 0 black)
         drop-shadow(-4px 0 0 black)
-        drop-shadow(0 -4px 0 black);
-        z-index: 1;
+        drop-shadow(0 -4px 0 black); 
 &.anim{
     opacity: 1;
 }
+z-index:50;
 `
 
  
 const ArrowDecoSide = styled.div`
 
+z-index:40;
 position: relative;
 left:11.6rem;
 top:-4.6rem;
@@ -182,6 +114,7 @@ background-color: white;
 `
 
 const ArrowDecoSecond = styled.div`
+z-index:40;
     position: relative;
     left:11.6rem;
     top:-4.6rem;
@@ -191,6 +124,7 @@ const ArrowDecoSecond = styled.div`
 
 `
 const ArrowDecoSideTwo = styled.div`
+z-index:40;
 
 position: relative;
 left:53.6rem;
@@ -202,6 +136,7 @@ background-color: white;
 
 
 const ArrowDeco = styled.div`
+z-index:40;
     position: relative;
     left: 53.6rem;
     top: -6.1rem;
@@ -211,6 +146,7 @@ const ArrowDeco = styled.div`
 
 `
 const ArrowImg = styled.div` 
+z-index:40;
 background-image: url(${arrowUrl});
 background-size:contain;
 background-repeat: no-repeat;
@@ -224,32 +160,28 @@ position: relative;
  left:92%; 
 `
 
-const AboutFirstFlexLayer = styled.div`
-width: 100%;
-height: 100%;
+const AboutFlexDiv = styled.div`
 display: flex;
-flex-direction: row; 
-align-items: flex-start;
-justify-content: space-between;
-`
-
-const AboutInfoNextToPortrait = styled.div`     
-display: flex;
+gap:2rem;
 flex-direction: column;
-justify-content: space-between; 
-min-height: 100%;
+
+@media (width > 639px) { 
+    flex-direction: row;
+}
+
 `
 
-const AboutContentDiv = styled.div` 
-width: 100%;
-min-height:100%;
-color:white; 
-z-index: 3; 
-display:flex;
-flex-direction: column;     
-` 
+const AboutText = styled.div`
+margin-top:1rem;
 
-const AboutPortrait = styled.div`  
+`
+
+const AboutParagraph = styled.div`
+margin-bottom: 1rem; 
+`
+
+const AboutPortrait = styled.img`  
+    float:right;
     position: sticky;
     margin-top: 0.5rem;
     background-image: url(${portraitUrl});
@@ -258,77 +190,64 @@ const AboutPortrait = styled.div`
     border-radius: 10px; 
     box-shadow: rgba(255, 60, 33,0.5) 0.5rem 0.5rem, rgba(255, 60, 33,0.4) 1rem 1rem, rgba(255, 60, 33,0.3) 1.5rem 1.5rem, rgba(255, 60, 33,0.2) 2rem 2rem, rgba(255, 60, 33,0.1) 2.5rem 2.5rem,
     rgba(255, 60, 33,0.5) -0.2rem -0.2rem, rgba(255, 60, 33,0.4) -0.4rem -0.4rem, rgba(255, 60, 33,0.3) -0.6rem -0.6rem, rgba(255, 60, 33,0.2) -0.8rem -0.8rem, rgba(255, 60, 33,0.1) -1.0rem -1.0rem;
+     
+        height:120vw;
+        min-width:80vw;
+        max-width: 80vw;
+        margin-left:auto;
+        margin-right:auto;
+    @media (width > 639px) {  
+        min-width: 14rem;
+        min-height:21rem;
+        max-height: 21rem;
+        margin-right:20px;
+    } 
+    @media (width > 1200px) {  
+        min-width: 20rem;
+        min-height: 30rem;
+        max-height: 30rem;
+        margin-right:20px;
+    } 
+
 `
 
 const AboutMainTitle = styled.div` 
-max-width: 90%;
+width: 99%;
 font-family:  zero4B, 'Courier New', Courier, monospace; 
 border-bottom:0.4rem solid white ;
 color:white;
-font-size:4rem; 
+margin-bottom: 0.75rem;
+
+
 filter: drop-shadow(0.1rem 0rem 0 ${GoodOrange}) drop-shadow(0.25rem 0.25rem 0 ${GoodOrange});
-`
-const AboutSubTitle = styled.div`
-margin-top:0.5rem;
-font-size:2rem;
-margin-right:2rem;
-`
 
-const AboutProjectsDiv = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center; 
-pointer-events: none;  
-margin-top:2.6rem; 
-gap:2rem; 
-min-width: 100%;
- 
-`
-const ProjectsPreviewDiv = styled.div` 
-width: 100%;
-pointer-events: none; 
-`
-const AboutTechnologiesDiv = styled.div`   
-min-width: 96%;  
-margin:2rem 0rem 1rem 0;    
-display: flex;
-flex-direction: row;   
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-evenly;    
-`
-const TechIconsOrbDiv = styled.div` 
-pointer-events: none; 
-transition: all 200ms ease-out;  
-background-color: rgba(12,12,12,0.3); 
-border-radius: 50%;
-display: flex;
-flex-direction: row;
-align-items: center;
-vertical-align: middle;
-justify-content: space-around; 
-margin-bottom: 0.5rem;  
+font-size:2.4rem; 
 
-
-
-&:hover{ 
-    background-color: rgba(12,12,12);
-    filter: drop-shadow(2px 0 0 white) drop-shadow(-2px 0 0 white) drop-shadow(0 2px 0 white) drop-shadow(0 -2px 0 white) drop-shadow(2px 0 0 ${GoodOrange}) drop-shadow(-2px 0 0 ${GoodOrange}) drop-shadow(0 2px 0 ${GoodOrange}) drop-shadow(0 -2px 0 ${GoodOrange});; 
-} 
-`
-const TechIconsImg = styled.img`  
-pointer-events: all; 
-cursor: help; 
-filter: brightness(0) invert(1) drop-shadow(0px 0 0 ${GoodOrange})  drop-shadow(0px 0 0 ${GoodOrange});
-
-width: 3rem; 
-min-height: 3rem;  
-transition: all 200ms ease-out;
-&:hover{  
-    width: 3.25rem; 
-    filter: brightness(0) invert(1)   drop-shadow(2px 0 0 ${GoodOrange}) drop-shadow(-2px 0 0 ${GoodOrange}) drop-shadow(0 2px 0 ${GoodOrange}) drop-shadow(0 -2px 0 ${GoodOrange});
+@media (width > 640px)
+{
+    font-size:3rem; 
 }
+@media (width > 1200px)
+{
+    font-size:4rem; 
+}
+`  
+
+const EmailLink = styled.a`
+color:yellow;
+text-decoration: underline;
+&:hover{
+    color:${GoodOrange}
+}
+`
+
+const EmailIcon = styled.img`
+position: absolute;
+height:1.2rem;
+width: 1.2rem;
+filter: brightness(0) invert(1);
+margin-top:0.3rem;
+margin-left: 0.1rem;
 `
 
 
